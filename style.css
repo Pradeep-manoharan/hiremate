@@ -1,56 +1,57 @@
 /* HireMate Design System - Light Default, Dark Toggle */
 :root {
-  /* Default Light Theme Variables */
+  /* LIGHT MODE (Default) */
+  --primary: #000000;
+  --primary-hover: #333333;
   --background: #ffffff;
-  --surface: #f4f4f4;
-  --surface-hover: #e5e5e5;
-
-  --text-main: #000000;
-  --text-muted: #666666;
-  --border-light: #e0e0e0;
-
-  --btn-text: #ffffff;
-  --btn-bg: #000000;
-  --btn-border: #000000;
-
-  /* Typography */
-  --font-sans: 'Outfit', sans-serif;
-
-  /* Spacing */
+  --surface: #f4f4f5;
+  --surface-hover: #e4e4e7;
+  --text-main: #09090b;
+  /* Dark text for light bg */
+  --text-muted: #71717a;
+  --border-light: #e4e4e7;
+  --white: #ffffff;
   --spacing-sm: 0.5rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 6rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
 }
 
-/* Dark Theme Overrides */
 [data-theme="dark"] {
-  --background: #000000;
-  --surface: #111111;
-  --surface-hover: #1a1a1a;
-
-  --text-main: #ffffff;
-  --text-muted: #888888;
-  --border-light: #333333;
-
-  --btn-text: #000000;
-  --btn-bg: #ffffff;
-  --btn-border: #ffffff;
+  /* DARK MODE */
+  --primary: #ffffff;
+  --primary-hover: #e0e0e0;
+  --background: #09090b;
+  --surface: #18181b;
+  --surface-hover: #27272a;
+  --text-main: #fafafa;
+  /* Light text for dark bg */
+  --text-muted: #a1a1aa;
+  --border-light: #27272a;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-sans);
   background-color: var(--background);
   color: var(--text-main);
-  line-height: 1.7;
+  line-height: 1.6;
   overflow-x: hidden;
+  /* Prevent horizontal scroll */
+  width: 100%;
+  position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Utilities */
@@ -86,23 +87,26 @@ h4 {
 }
 
 .btn-primary {
-  background: var(--btn-bg);
-  color: var(--btn-text);
+  background: var(--text-main);
+  color: var(--background);
+  border-color: var(--text-main);
 }
 
 .btn-primary:hover {
-  opacity: 0.8;
+  background: var(--background);
+  color: var(--text-main);
+  border-color: var(--text-main);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--text-main);
-  border-color: var(--border-light);
+  border-color: var(--text-main);
 }
 
 .btn-outline:hover {
-  background: var(--surface);
-  border-color: var(--text-main);
+  background: var(--text-main);
+  color: var(--background);
 }
 
 .section-title {
@@ -347,92 +351,194 @@ nav {
   letter-spacing: 0.05em;
 }
 
-/* Contact / Footer */
-footer {
+/* CTA Section */
+.cta {
   padding: var(--spacing-xl) 0;
   border-top: 1px solid var(--border-light);
-  margin-top: var(--spacing-lg);
   text-align: center;
-  transition: border-color 0.3s ease;
 }
 
-/* Animations */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+.cta h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--text-main);
 }
 
-.fade-in-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+.cta>.container>p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+/* Split CTA Section */
+.split-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-card {
+  border: 1px solid var(--border-light);
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+.cta-card:hover {
+  border-color: var(--text-main);
+  background: var(--surface-hover);
+  transform: translateY(-4px);
+}
+
+.cta-card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.cta-card p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.cta-card .btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 0.95rem;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-    margin-top: 2rem;
-    /* Add space for header if needed */
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
   }
 
-  .grid-2 {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+  .container {
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .section-title {
-    font-size: 2.25rem;
-  }
-
-  /* Header Mobile Adjustments */
+  /* Fix Header Alignment & Width */
   header {
-    position: relative;
-    /* Stop floating over content on mobile */
+    width: 100%;
     padding: 1rem 0;
+    overflow-x: hidden;
+    position: relative;
+    /* Restore relative positioning to prevent overlap */
   }
 
   nav {
     flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo-img {
+    max-height: 40px;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  nav>div {
+    display: flex;
     gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it doesn't exceed screen width */
+    flex-wrap: wrap;
+    /* Allow wrapping on extremely small screens */
   }
 
-  .logo {
-    margin-bottom: 0.5rem;
+  /* Marquee Fix */
+  .marquee-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
   }
 
-  /* Hero Mobile Adjustments */
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+    word-wrap: break-word;
+  }
+
+  .grid-2,
+  .split-cta-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .section-title,
+  .cta h2 {
+    font-size: 2rem;
+  }
+
   .hero {
-    min-height: auto;
-    padding: 4rem 0;
-    /* Add padding since height is auto */
-    align-items: flex-start;
-    /* Align closer to top */
-  }
-
-  .hero-content {
-    padding-top: 0;
+    padding: 3rem 0;
   }
 
   .btn {
     width: 100%;
-    /* Full width buttons for easier tapping */
-    margin-bottom: 0.5rem;
   }
 
-  /* Make button container stack */
-  .hero-content>div {
-    flex-direction: column;
-    gap: 0.5rem;
+  /* Keep nav button auto width so it sits next to toggle */
+  nav .btn {
+    width: auto;
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
-  .card-glass {
-    padding: 1.5rem;
+  .container {
+    padding: 0 1rem;
+  }
+
+  .cta-card,
+  .feature-card {
+    padding: 1.5rem 1rem;
   }
 }
+
+/* Small Screen / iPhone SE Specific Fixes */
+@media (max-width: 380px) {
+  nav>div {
+    gap: 0.5rem;
+    /* Reduce gap between button and toggle */
+    max-width: 100%;
+  }
+
+  /* Target the Partner button specifically if possible, or generic btn in nav */
+  .btn {
+    padding: 0.6rem 1rem !important;
+    /* Force smaller padding */
+    font-size: 0.75rem !important;
+  }
+
+  .logo-img {
+    height: 35px;
+    /* Slightly smaller logo */
+  }
+}
+
+```

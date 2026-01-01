@@ -54,8 +54,7 @@
                 </a>
 
                 <div style="display: flex; align-items: center;">
-                    <a href="#contact" class="btn btn-primary"
-                        style="padding: 0.7rem 1.5rem; font-size: 0.8rem;">Partner With Us</a>
+                    <a href="#contact" class="btn btn-primary" id="partner-btn">Partner With Us</a>
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
                         <!-- Default to Moon Icon (for Light Mode) -->
@@ -75,9 +74,12 @@
             <div class="container hero-content fade-in-up">
                 <h1>Bridging the Gap with <br> Specialized AI</h1>
                 <p style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.5rem; font-weight: 500;">
-                    Making hiring <span style="border-bottom: 2px solid var(--text-main);">Effortless</span>, <span
-                        style="border-bottom: 2px solid var(--text-main);">Seamless</span>, <span
-                        style="border-bottom: 2px solid var(--text-main);">Lossless</span>.
+                    Making hiring
+                    <span class="carousel-container">
+                        <span class="carousel-word active">Effortless</span>
+                        <span class="carousel-word">Seamless</span>
+                        <span class="carousel-word">Lossless</span>
+                    </span>
                 </p>
                 <p>We architect careers and build teams using advanced intelligence. By synchronizing academic potential
                     with real-time industry data, HireMate's AI-driven ecosystem empowers graduates and elevates
@@ -110,13 +112,13 @@
                 <div class="mission-text fade-in-up">
                     <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">The AI Ecosystem of Excellence</h2>
                     <p style="color: var(--text-muted); font-size: 1.15rem; margin-bottom: 2rem;">
-                        The modern workforce faces a paradox: open roles vs. unemployed potential. The missing link is
-                        <strong>data-driven precision</strong>.
+                        The talent gap isn't a shortage of people; it's a failure of alignment. HireMate deploys
+                        specialized algorithms to audit, calibrate, and match potential with precision.
                     </p>
                     <p
                         style="color: var(--text-main); font-size: 1.15rem; border-left: 2px solid var(--text-main); padding-left: 1.5rem;">
-                        HireMate uses specialized algorithms to calibrate talent. We deconstruct industry requirements
-                        and reconstruct graduate skill sets using predictive modeling.
+                        We deconstruct industry requirements and reconstruct graduate skill sets using predictive
+                        modeling.
                     </p>
                 </div>
                 <div class="mission-visual fade-in-up">
@@ -124,7 +126,7 @@
                         <div style="display: flex; flex-direction: column; gap: 2rem;">
                             <!-- Step 1 -->
                             <div style="display: flex; gap: 1.5rem; align-items: start;">
-                                <div class="step-number">1</div>
+                                <div class="step-number">01</div>
                                 <div>
                                     <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">AI Diagnostic</h4>
                                     <p style="color: var(--text-muted); font-size: 1rem;">Deep-learning analysis of the
@@ -133,20 +135,20 @@
                             </div>
                             <!-- Step 2 -->
                             <div style="display: flex; gap: 1.5rem; align-items: start;">
-                                <div class="step-number">2</div>
+                                <div class="step-number">02</div>
                                 <div>
-                                    <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Smart Calibration</h4>
+                                    <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Intelligent Calibration</h4>
                                     <p style="color: var(--text-muted); font-size: 1rem;">Personalized, adaptive
                                         upskilling modules tailored by our AI Coach.</p>
                                 </div>
                             </div>
                             <!-- Step 3 -->
                             <div style="display: flex; gap: 1.5rem; align-items: start;">
-                                <div class="step-number">3</div>
+                                <div class="step-number">03</div>
                                 <div>
                                     <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Predictive Deployment</h4>
-                                    <p style="color: var(--text-muted); font-size: 1rem;">Data-backed integration into
-                                        high-growth corporate environments.</p>
+                                    <p style="color: var(--text-muted); font-size: 1rem;">Graduates are matched to roles
+                                        with a 95% improved retention probability.</p>
                                 </div>
                             </div>
                         </div>
@@ -251,16 +253,29 @@
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section style="padding: 6rem 0; text-align: center; border-top: 1px solid var(--border-light);">
-            <div class="container fade-in-up">
-                <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ready to Evolve?</h2>
-                <p
-                    style="color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Join the AI-driven ecosystem that is redefining how potential meets opportunity.
-                </p>
-                <a href="#contact" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Connect with
-                    HireMate AI</a>
+        <!-- Split CTA / Ready to Evolve Section -->
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>Ready to Evolve?</h2>
+                <p>Select your path to continue.</p>
+
+                <div class="split-cta-grid">
+                    <!-- Candidates Card -->
+                    <div class="cta-card">
+                        <h3>For Candidates</h3>
+                        <p>Accelerate your career with AI-driven guidance and placement.</p>
+                        <a href="https://forms.gle/BpWB8Cp9Vb3yMzn88" target="_blank" class="btn btn-primary"
+                            style="width: 100%;">Join the Talent Pool</a>
+                    </div>
+
+                    <!-- Employers Card -->
+                    <div class="cta-card">
+                        <h3>For Employers</h3>
+                        <p>Build high-performance teams with predictive precision.</p>
+                        <a href="https://cal.com/" target="_blank" class="btn btn-primary" style="width: 100%;">Book
+                            Consultation</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

@@ -1,46 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic - Default is Light, toggle enables Dark
+    // Theme Toggle Logic
     const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    const iconContainer = toggleBtn; // We will swap innerHTML or just handle SVG via CSS/JS update if needed, but for now simple attribute toggle.
 
-    // Check local storage. If 'dark', enable dark mode.
-    const currentTheme = localStorage.getItem('hiremate-theme');
-    if (currentTheme === 'dark') {
-        body.setAttribute('data-theme', 'dark');
-        updateIcon('dark');
+    // SVG Icons
+    const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+    const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+    // Initialize theme on page load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        toggleBtn.innerHTML = sunIcon;
     } else {
-        updateIcon('light');
+        // Default is Light mode (no attribute needed)
+        document.body.removeAttribute('data-theme');
+        toggleBtn.innerHTML = moonIcon;
     }
 
+    // Toggle theme on button click
     toggleBtn.addEventListener('click', () => {
-        // If currently dark, switch to light (default)
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.removeAttribute('data-theme');
-            localStorage.setItem('hiremate-theme', 'light');
-            updateIcon('light');
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+            // Switch to Light
+            document.body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            toggleBtn.innerHTML = moonIcon;
         } else {
             // Switch to Dark
-            body.setAttribute('data-theme', 'dark');
-            localStorage.setItem('hiremate-theme', 'dark');
-            updateIcon('dark');
+            document.body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            toggleBtn.innerHTML = sunIcon;
         }
     });
 
-    function updateIcon(theme) {
-        // Optional: Update SVG based on theme. 
-        // Light Mode -> Show Moon (click to go dark)
-        // Dark Mode -> Show Sun (click to go light)
+    // Word Carousel Logic
+    const words = document.querySelectorAll('.carousel-word');
+    let currentIndex = 0;
 
-        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+    if (words.length > 0) {
+        setInterval(() => {
+            const currentWord = words[currentIndex];
+            const nextIndex = (currentIndex + 1) % words.length;
+            const nextWord = words[nextIndex];
 
-        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+            // Exit current
+            currentWord.classList.remove('active');
+            currentWord.classList.add('exit');
 
-        if (theme === 'light') {
-            toggleBtn.innerHTML = moonIcon; // Show Moon when in Light mode
-        } else {
-            toggleBtn.innerHTML = sunIcon; // Show Sun when in Dark mode
-        }
+            // Enter next
+            nextWord.classList.add('active');
+
+            // Clean up exit class after transition
+            setTimeout(() => {
+                currentWord.classList.remove('exit');
+            }, 500); // Match CSS transition duration
+
+            currentIndex = nextIndex;
+        }, 2500); // Rotate every 2.5 seconds
     }
 
     // Intersection Observer for scroll animations
