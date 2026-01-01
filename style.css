@@ -4,8 +4,8 @@
   --primary: #000000;
   --primary-hover: #333333;
   --background: #ffffff;
-  --surface: #f4f4f5;
-  --surface-hover: #e4e4e7;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5;
   --text-main: #09090b;
   /* Dark text for light bg */
   --text-muted: #71717a;
@@ -431,39 +431,43 @@ nav {
     max-width: 100%;
   }
 
-  /* Fix Header Alignment & Width */
+  /* Fix Header Alignment & Width - Single Line Layout */
   header {
     width: 100%;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     overflow-x: hidden;
     position: relative;
-    /* Restore relative positioning to prevent overlap */
   }
 
   nav {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: row;
+    /* Force row layout */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 0.5rem;
   }
 
   .logo-img {
-    max-height: 40px;
+    height: 32px;
+    /* Smaller logo for mobile */
+    max-height: 32px;
     width: auto;
-    margin: 0 auto;
+    margin: 0;
+    /* Remove centering margin */
     display: block;
   }
 
   nav>div {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 100%;
-    /* Ensure it doesn't exceed screen width */
-    flex-wrap: wrap;
-    /* Allow wrapping on extremely small screens */
+    justify-content: flex-end;
+    width: auto;
+    /* Shrink to fit content */
+    max-width: none;
+    flex-wrap: nowrap;
+    /* Prevent wrapping */
   }
 
   /* Marquee Fix */
@@ -498,10 +502,20 @@ nav {
     width: 100%;
   }
 
-  /* Keep nav button auto width so it sits next to toggle */
+  /* Compact nav button for single line */
   nav .btn {
     width: auto;
     margin-bottom: 0;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+  }
+
+  #theme-toggle {
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    width: 32px;
+    height: 32px;
   }
 }
 
